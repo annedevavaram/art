@@ -1,0 +1,167 @@
+[14/10, 10:06 am] Hepz Devavaram: TurboScribe Logo
+TurboScribe
+2 of 3 daily transcriptions used
+
+11 Oct, 8.00 pm​saferoom
+
+
+
+
+
+
+
+
+
+14 Oct 2024, 9:57 am
+11 Oct, 8.00 pm​saferoom
+Pause
+
+00:00
+00:56
+Mute
+Settings
+(0:00) We are doing a walkthrough of EFE code to set up safe home infrastructure for home resources. (0:13) Yeah, I think it's some common module I think we can create, maybe be able to use for... (0:22) Okay, sounds good. (0:24) We will not ask questions, we will not ask questions.
+(0:26) Oh, no worries, I was just wondering. (0:30) Yeah, we are trying to implement EFE subsets, so you can just start up again. (0:35) Okay.
+(0:35) So I'm waiting for Billy. (0:38) Try to reduce the effort, give it a bit of effort. (0:43) Do we have Billy? (0:45) No, we do not.
+(0:46) Thank you, Suresh, for joining. (0:48) I think your name was mentioned by Krishna as well as Bromio, since Bromio is in a change of quest this morning. (1:01) Okay.
+(1:02) So we requested you, I know I requested Deja to join from the Enablement team as well. (1:07) So let me give you a brief overview of why we are here today. (1:11) So FGAC team is supporting Safe Home team to set up our Q&A environment.
+(1:16) We had a conversation with Amol and Bromio last week for them to share the code that is currently being utilized for Safe Home, you know, infrastructure setup for resources, for rules. (1:34) They did provide us the code. (1:36) However, FGAC team, Billy and Arnab have some questions.
+(1:41) Hence, we wanted Bromio to provide a walkthrough of the code, which is attached, I believe, to the meeting invite. (1:54) So Billy and Arnab, please keep me honest. (2:05) I see Amol sent an email with that attachment.
+(2:08) Is that what you're talking about? (2:10) Yes, Amol and then Krishna forwarded it to us. (2:13) Yeah. (2:14) That is what we are discussing.
+(2:17) Okay. (2:22) Sorry, Hari. (2:25) You mentioned something.
+(2:26) I missed that part. (2:28) I heard my name. (2:30) So I was asking you to keep me honest because that is the purpose of this meeting, right? (2:35) We want to review the code with Suresh.
+(2:38) Yeah. (2:39) Since Bromio is not available and you guys have some questions. (2:43) You and Arnab.
+(2:44) Yeah, this is more for a Q&A session. (2:50) Okay. (2:52) So do you want to share your screen, Billy? (2:57) Sure.
+(2:58) Yeah. (2:59) Okay. (3:00) So Suresh can answer the majority of our questions because he has worked on this as well when he was part of the platform.
+(3:08) Yeah, I'll chime in. (3:10) Sure, sure, sure. (3:11) Thank you.
+(3:13) Thank you, Suresh. (3:34) Let me know where you can see us. (3:39) Yes, we can see you.
+(3:40) Okay, great. (3:41) Yeah. (3:41) So what you see here is the code, the entire modules, TFE code from Bromio.
+(3:51) Basically, this code is for ODIN. (3:56) And we don't have access, so we get a simplified. (4:01) And there are about five modules.
+(4:04) One is for BigQuery. (4:07) BigQuery, this module basically grant access, right? (4:13) The permission, right? (4:14) Owner or read permission. (4:16) So this is okay.
+(4:18) There are no questions. (4:19) Okay, let me go with that. (4:21) So it's not only the permission assignment.
+(4:27) If you click on main.tf, right? (4:31) Okay. (4:33) So here you have a generic code. (4:36) It will not see about any datasets or nothing, okay? (4:39) Everything comes from local.tf. (4:41) If you now go to local.tf. (4:43) Mm-hmm.
+(4:45) So line number four, that is the dataset name. (4:50) Yeah. (4:51) We grant this.
+[14/10, 10:07 am] Hepz Devavaram: 4:53) Okay. (4:53) Correct. (4:54) So we create this SFR DLP scan.
+(4:58) And dataset right account on line number seven and 11 and 13. (5:05) Those are optional. (5:07) Whether you're going to provide your permissions or not, it's up to you.
+(5:11) Okay? (5:11) So it's not only assigning roles or permissions. (5:16) Even the creation happens in this. (5:19) Yeah.
+(5:20) Yeah. (5:21) Okay, good. (5:22) Yeah.
+(5:22) So this one, we're okay, right? (5:24) One thing to add here, right? (5:29) This is the DLP scan main account, main dataset where we post all our (5:36) operations on the table. (5:37) And CW account needs to have right permission on that dataset. (5:43) For sure.
+(5:44) So without that, I can say for now. (5:48) Okay. (5:49) Yeah.
+(5:50) Those details, okay. (5:51) we can get them from the spreadsheet Krishna give to us. (6:01) Right, yeah, that's good.
+(6:02) And you can cross-check with the template or Excel sheet Krishna shared. (6:06) Yeah, yeah, this one later I may have some question if we have time. (6:12) So this module is okay, we don't have it.
+(6:14) But the next one, composer, right? (6:17) So composer, there are a lot of information we don't know where to get. (6:22) So this is probably the same thing. (6:25) Create a composer, right? (6:27) Yeah.
+(6:29) But the information like network project ID, all those parameters we don't know where to get. (6:38) So that's one of the big questions. (6:42) Understood, yeah.
+(6:44) This is something you need to connect with network team. (6:48) Richard and team create a subnet usually and give it to us. (6:53) So we can utilize them for any composables or something, okay? (6:58) So usually it's an art request to their, sorry, not art request, (7:04) the intake request to Richard's team to create a subnet for you guys, okay? (7:10) Three or four projects in common for your team.
+(7:13) Ask him to append them to all four of them. (7:16) Give him the project details so that he can get shared subnets for your projects. (7:25) Once he completes that, then these things will come into picture.
+[14/10, 10:08 am] Hepz Devavaram: 7:29) So he's going to give you the details related to number 8, 11. (7:35) Okay. (7:37) Line number 8, that is network.
+(7:39) And then line number 11, 12, 13. (7:47) Up to 13? (7:48) Yeah. (7:50) Okay.
+(7:50) All these things will come from him. (7:54) Sorry. (7:55) Let me mark.
+(7:56) Billy. (7:57) Yeah. (7:58) Billy, instead of marking XXX, why don't you mark RRR so that we know we have to reach out to Richard, right? (8:05) That's a good idea, yes.
+(8:08) Let me do this. (8:09) Yeah. (8:10) Just put a comment maybe, separate line before that.
+(8:16) 8, 9, all the way to? (8:20) What? (8:22) 9, 9. (8:23) Some typo there. (8:25) Oh, let me cover. (8:27) Sorry.
+(8:30) Yeah. (8:32) Okay. (8:33) It's a network project ID.
+(8:35) Yeah. (8:40) Okay. (8:40) So 9, 10, everything.
+(8:44) 9, 10, and then? (8:46) 11. (8:50) Yeah. (8:50) 9, 10, 11, 12, 13.
+(8:52) All five of them, you'll get it from him. (8:55) And don't worry about Cloud SQL IP side range. (9:00) Just use the, that should be fine.
+(9:04) Okay. (9:05) That's great. (9:06) We don't need to explicitly provision that.
+(9:10) Okay. (9:11) Okay. (9:11) And then the service account and information, you anyway know that.
+(9:15) You're going to provide your CW or whatever service account you're going to create by your requirement. (9:20) Okay. (9:22) What about line 15? (9:26) Line 15, you just copy, use the same information that is given.
+(9:30) Oh, just that change? (9:32) Yes. (9:33) Okay. (9:34) Okay.
+(9:35) Yeah. (9:36) Okay. (9:41) Good.
+(9:42) Yeah. (9:42) Thank you. (9:43) So those I assume is the same, right? (9:48) One second.
+(9:49) So while provisioning, just be a little conscious on this part. (9:55) While provisioning composer, it cannot deploy the Python packages. (10:00) Maybe Deja can answer if they have enhanced the module now.
+(10:04) Can you hear me? (10:05) Are you guys able? (10:06) Yeah, Deja. (10:07) Yeah. (10:08) Just a question, Deja.
+(10:08) So you have to. (10:09) In the latest? (10:10) Go ahead. (10:10) So after you have to do the packages after.
+(10:15) So we've been commenting these like line 20 to line 22. (10:20) You'll just comment that out when you first initially deploy the composer. (10:23) And then after that, you'll come back and uncomment them.
+[14/10, 10:09 am] Hepz Devavaram: 10:26) Yeah. (10:27) So ideally it will be a two-step process to give you more details, Billy. (10:32) While composer is getting deployed, it cannot do the Python packages deployment.
+(10:37) I'll tell you why. (10:38) Okay. (10:38) So for that reason, while doing the deployment, comment out line 20, 21, 22.
+(10:44) Okay. (10:45) So that the composer installation happens. (10:48) After that, the Python PIP file has to get moved over to the GCS bucket.
+(10:54) So that our Wells Fargo artifactory and information gets pulled over by the composer. (10:59) Once it is all configured, then we can uncomment this and rerun the plan and apply. (11:04) It will understand where to go to pull the packages.
+(11:07) Because our composer is private environment. (11:10) It cannot go to the Google or PyPI to pull the packages. (11:16) That's the reason we take it as it is.
+(11:19) Okay. (11:21) Do you need to come out from line 18 to 26? (11:27) No. (11:29) 90 should stay.
+(11:31) It's a mandatory field, but keep it empty. (11:33) Don't pass any packages inside that from 22, 23, 24. (11:37) Just like this, right? (11:38) Just like this.
+(11:40) Yes. (11:41) Okay. (11:41) Okay.
+(11:42) Then the next question is, which team can move the Python package? (11:47) What's the process? (11:50) Nothing. (11:51) Maybe you lost that second point what I said. (11:54) Once composer is deployed, Wells Fargo PIP file has to be copied over to the GCS bucket (12:02) associated with this composer.
+(12:04) Okay. (12:05) There will be a folder inside that bucket stating config. (12:10) Under that config, you need to create a folder called PIP and copy it there.
+(12:14) Just check the folder structure in your existing composers in any of the environment in sandbox. (12:20) Okay. (12:20) You will find the same folder structure.
+(12:23) Just place the PIP file. (12:26) Okay. (12:26) That should be good enough.
+(12:28) So, which team will do this? (12:29) Question again to Deja. (12:32) Your team only. (12:34) Oh, okay.
+(12:35) Yeah, maybe Richard, your team, right? (12:40) Because we don't handle this Python package. (12:46) No, I don't think we have access. (12:48) One second.
+(12:51) Who is doing the composer deployment? (12:55) We were doing the composer deployment. (12:58) Then you own these two. (13:01) Oh, okay.
+(13:02) You don't need a separate team to do. (13:03) Yeah. (13:05) It is all pulled from the Wells Fargo artifactory.
+(13:09) That's it. (13:09) You don't do anything extra to install these Python packages. (13:13) It's up to you.
+(13:15) Okay. (13:15) If you are using these Python packages, then enable them. (13:19) If you don't need them, ignore it.
+(13:21) Not an issue at all. (13:23) Okay. (13:23) Just check.
+[14/10, 10:11 am] Hepz Devavaram: 13:23) Because in the past, I remember Krishna asked for this for safe room purposes. (13:29) He was asking Avro or FastAvro or something. (13:34) And Python hash was also part of his requirement, I think.
+(13:37) I don't need to recall. (13:39) But, yeah, double check. (13:40) If you guys need it, install it.
+(13:41) Otherwise, ignore it. (13:42) Yeah, these three are required. (13:45) So, how do the PD team do that? (13:51) So, they have to rerun it one more time? (13:54) Is that what you? (13:55) Yeah, it's a two-step process.
+(13:56) The first time, those three lines come out, right? (13:58) The second, you need to run a second time to enable these all three? (14:03) Yes. (14:04) Okay. (14:05) Yeah.
+(14:06) So, after. (14:07) Before doing the second step, ensure you are copying the pip file to the Composer bucket. (14:12) Oh, there's an additional step.
+[14/10, 10:11 am] Hepz Devavaram: 14:14) Yeah, then only Composer will understand where to go pull these packages. (14:19) Okay. (14:21) Yeah, but for that copy, pip file, do we have an instruction? (14:29) Who can have that instruction? (14:31) Deja, do you have the code updated so that pip file will get automatically copied (14:37) when Composer is deployed, or is that still a manual process? (14:40) Yes, we do.
+(14:42) We've added a Terraform. (14:44) We do have the code available. (14:46) Let me see if I can.
+(14:49) Share that. (14:51) Can you expand that pip folder on the left side, Billy? (14:54) I see a PIP there. (14:58) Here? (15:00) Yeah.
+(15:00) Yeah, yeah. (15:01) Yeah, you have that file. (15:03) Can you go to Composer main.tf? (15:06) Composer main.tf, okay.
+(15:11) So, here in main.tf, we are adding. (15:21) Let me see if I can find the code. (15:28) Yeah, a lot of enhancements were done by Deja, Robbie, and Tim.
+(15:32) I may not be up to date. (15:34) That's the reason I'm depending on them. (15:35) So, just to know if they have made some enhancements.
+[14/10, 10:12 am] Hepz Devavaram: 15:39) Sure, yeah. (15:40) Thank you. (15:41) Thanks.
+(15:47) Is it okay for me to just send the code to the chat? (15:51) Should be okay. (15:53) Yeah. (15:53) Okay.
+(15:55) So, we're using the Terraform resource to manually create the bucket. (16:00) Oh, no. (16:02) No.
+(16:22) Yeah, just a quick comment, right? (16:25) So, while deploying the Composer, it automatically creates a bucket. (16:30) In the recent versions, they have released where we can give explicit buckets. (16:34) But since it is a new Composer on a new project, I would prefer that you guys ask it to allow the Composer to create its own bucket.
+(16:46) Okay? (16:47) And then if you go to this bucket, you'll find a bucket where you can paste the pip file. (16:53) It's not pasting correctly. (16:55) Let me see if I can get a screenshot.
+(16:58) But, yeah, so what we're doing is it will create the bucket for you. (17:02) And then we're using the Terraform resources where you can create the objects in the bucket. (17:07) And then you upload the pip file.
+(17:11) And then we just list the bucket name so that it will automatically upload it. (17:17) So, this all happened behind the scenes when we run this code, right? (17:22) Your module will take care of this, whatever you said. (17:28) Is this happening inside this module? (17:31) No.
+(17:31) So, I'm going to send… (17:34) Only the first piece. (17:34) Only the bucket being created. (17:38) When we run this code, a bucket will be created.
+(17:44) So, Composer gets created and its associated bucket will get created. (17:52) Yeah, where's the bucket information? (17:56) Billy, we don't have to give that bucket information at all. (18:00) It's a dynamic process that happens in the backend.
+(18:02) So, we don't give that information. (18:08) Composer, what to say, when you try to install Composer, (18:13) Google had already incorporated whatever is required in the backend. (18:16) It creates its own GKE.
+(18:18) It creates its own PubSub required module. (18:22) And also the… (18:23) Gotcha, gotcha. (18:23) Everything happens in the backend.
+(18:26) So, after that, we just go back to the console to check the bucket information. (18:31) Yeah. (18:32) Okay, gotcha, gotcha.
+(18:33) Makes sense. (18:34) Thank you. (18:36) Okay.
+(18:37) So, I see the screenshot. (18:39) Yes. (18:40) So, in the screenshot I sent, if you have the pip… (18:45) This will upload the pip config file to the bucket.
+[14/10, 10:13 am] Hepz Devavaram: 18:49) You just have to input the bucket name that was created from the Composer module. (18:56) Okay. (18:59) Let me see if I can… (19:02) Just note down this thing, Billy, for the sequence.
+(19:06) Don't run this before your bucket is created or something. (19:10) So, always go in sequence with this one. (19:14) Yeah.
+(19:14) Also, we have to run this code. (19:17) Put this in the main.tf. (19:19) Yes. (19:22) Do you have access? (20:01) Oh, okay.
+(20:02) That's the link. (20:03) Thanks. (20:04) Open it.
+[14/10, 10:13 am] Hepz Devavaram: 20:18) Oh, no. (20:18) Okay. (20:19) Yeah, I don't have this access.
+(20:22) Okay. (20:23) Yeah. (20:25) So, just double check.
+(20:27) We have to run that code. (20:30) It just posted in the screenshot? (20:33) Yes. (20:34) After bucket is created and the name is identified.
+(20:40) So, we just run those. (20:41) Yes. (20:41) Oh, okay.
+(20:42) Okay, yeah. (20:44) You want to make sure that you have that pipconfig file added. (20:51) Okay.
+(20:51) Okay. (20:52) Thank you. (20:53) Let me see if I can… (20:54) I'll send a screenshot of our repository setup, the files.
+(20:59) I can see that, too. (21:00) Let me see. (21:02) Sure.
+[14/10, 10:13 am] Hepz Devavaram: 21:10) Michael, you're on the call, right? (21:11) Michael? (21:12) Yes. (21:13) Yeah, can you note down the steps we just discussed? (21:19) Okay. (21:22) Thank you.
+(22:02) So, I sent two more screenshots just showing that we have a pip folder, (22:09) and then in the folder we have the pipconfig file. (22:16) I see. (22:16) Okay.
+(22:33) So, the pipconfig file… (22:38) So, this is the pip folder, and inside of the folder we have that pipconfig file. (22:45) Okay. (22:47) So, is this like a templated thing? (22:50) It will be copied to somewhere, or we have to get this pipconfig file? (22:56) Okay.
+(22:58) Deja, would you mind sharing your screen for a minute? (23:02) Yeah. (23:03) Yeah, that would be good. (23:05) Thank you.
+(23:10) Are you able to see my screen? (23:15) Yeah. (23:17) Okay. (23:18) So, let me… (23:21) So, here, first, in the main.tf here… (23:26) Oh, actually, sorry.
+(23:29) I cannot see your screen. (23:31) Anyone? (23:32) Yeah, it's the same for me. (23:33) You can't see? (23:35) No, it just flashed.
+(23:38) Okay, let me try one more time. (23:43) Sometimes it doesn't work. (23:47) Okay.
+(23:53) Can you see now? (23:54) No, white screen. (23:57) Can you see my screen? (24:01) Yeah, we can. (24:02) Okay.
+(24:06) So, here, this is the main.tf. (24:10) This is where we are adding those two resource blocks that I sent earlier. (24:16) And then, when I was talking about the pipconfig file, here we have a pip folder. (24:22) And when you go into that folder, we have the pipconfig file.
+(24:26) And I believe you already have this file in your code. (24:29) And this is what the file looks like. (24:31) So, I just wanted to show you how we're doing the project structure, (24:35) so you can have your structure the same way to work with the resource blocks.
+(24:40) I see. (24:41) So, basically, in our repo, we have to create a similar structure. (24:47) Okay, got you.
+(24:48) Yes. (24:49) Okay. (24:50) Thank you.
+[14/10, 10:14 am] Hepz Devavaram: (24:48) Yes. (24:49) Okay. (24:50) Thank you.
+(24:51) No problem. (24:53) You've got it on the main.tf, right? (24:56) Where to add that code piece? (24:59) Billy? (25:01) I don't think right now we don't have. (25:05) I don't see those two resource.
+(25:08) That's in the main.tf, yes. (25:12) The screenshot that she sent for creating the folder structure under that bucket (25:17) and then to copy the file. (25:19) So, you're going to put that code piece in your main.tf, okay? (25:25) You mean under the pip folder? (25:30) No.
+(25:31) The resource blocks will be in your main.tf folder. (25:35) Sorry. (25:37) These are components, right? (25:40) Can you share your screen? (25:42) Yeah, sure.
+(25:47) That's important. (25:48) Where to put those two resource code? (25:51) Here? (25:53) This is our main, yeah. (25:55) So, not under the composer module in the main.
+(25:58) So, the main.tf, the one that's all the way at the bottom, the last one here. (26:04) Oh, let me get here. (26:05) Okay.
+(26:06) Yes. (26:07) I see. (26:10) Oh, I think you already have it.
+(26:12) Can you scroll up a little bit here? (26:13) Those two? (26:15) Yes. (26:15) So, you do have it already. (26:18) Oh, okay.
+(26:19) That's great. (26:20) Yes. (26:24) Do we have to comment these out as well before the composer instance is created? (26:32) Well, yes.
+(26:34) So, composer gets created, right, Deja, after that? (26:37) Yes. (26:38) So, for the resource block to work, the composer bucket has to be created first. (26:45) So, typically these resource blocks are depending on the composer creation.
+(26:53) So, we've been commenting these two blocks out. (26:56) And then after the composer is done creating and it creates the bucket, you'll be able to go into the console and find the bucket name. (27:03) And then uncomment these resources, add the bucket name, and then it'll work.
+(27:08) Yeah, yeah. (27:09) It makes sense. (27:10) Okay.
+(27:10) Okay. (27:13) Yeah, so we are good for this for composer, right? (27:19) Yeah, I think we covered everything else. (27:22) Need to pay attention.
+[14/10, 10:14 am] Hepz Devavaram: 27:25) Hi, sorry. (27:26) Maybe I missed, but did we talk about line number 16 and 17? (27:34) 16, 17. (27:37) Yeah, I think so.
+(27:40) Yeah, this is where we can get it from. (27:44) They have this service account. (27:47) Hold on one second.
+(27:48) It's a new project. (27:49) They'll not have any service account. (27:51) You're going to create them.
+(27:53) You will have it under the other folder, IA folder, just like composer. (27:57) So, it goes in sequence, okay? (27:59) So, you will create the service accounts. (28:01) You will do the role mappings.
+(28:03) And then you will create the resources. (28:05) You will tag the role binding on that resources, okay? (28:10) Are you saying we have to do the role binding first? (28:14) So, this is where the one gets executed first. (28:17) Go to the main.tf. (28:19) The root main.tf. (28:21) Not that one.
+[14/10, 10:15 am] Hepz Devavaram: 28:03) And then you will create the resources. (28:05) You will tag the role binding on that resources, okay? (28:10) Are you saying we have to do the role binding first? (28:14) So, this is where the one gets executed first. (28:17) Go to the main.tf. (28:19) The root main.tf. (28:21) Not that one.
+(28:22) Just come down. (28:23) The last main.tf. (28:25) Yeah. (28:26) So, first, this is getting called, right? (28:28) Go to the top.
+(28:30) If you see the sequence here, okay? (28:34) IAM is getting called. (28:36) And then KMS is called. (28:38) And then BQ and composer, okay? (28:40) So, IAM, when it is getting called, it's going to create the service accounts for you, okay? (28:45) Ensure you update the locals.tf under IAM modules folder with whatever service accounts are required, (28:51) whatever roles need to be tagged for it and everything, okay? (28:55) Once you're done with that, it's going to create an assign according to that, okay? (29:01) So, you mean that means we have to comment out those first, right? (29:08) And then we run, no? (29:11) Those are at the top, right, in the main.tf, so they will get executed first anyway.
+(29:18) Just go to main.tf there. (29:20) This one? (29:21) Yeah. (29:21) Yes.
+(29:23) Come down to line number 34. (29:27) 34, okay. (29:29) So, this has dependency with KMS.
+(29:31) So, unless KMS key is created, BQ module will not create work, okay? (29:37) It will not trigger BQ module. (29:39) If you go down further, yeah, GCS, okay, has the same dependency with KMS. (29:47) So, likewise, we have the dependencies, right? (29:51) So, it will not trigger everything at parallel.
+(29:54) It's going to happen in sequence, okay? (29:58) You don't have to worry about it.
