@@ -1,0 +1,86 @@
+Module Summary: DLP Scan and Composer Deployment
+DLP Scan Setup
+Objective: Establish a Data Loss Prevention (DLP) scan using a specified dataset.
+Key Steps:
+The dataset setup is optional, with permissions on lines 7, 11, and 13 being configurable.
+It is crucial for the Cloud Workload (CW) account to have write permissions on the main dataset to facilitate all operations.
+Reference existing templates or spreadsheets provided by Krishna for validation and cross-checking.
+Composer Deployment
+Challenges:
+
+There are several unknown parameters required for the Composer deployment, particularly the network project ID.
+Coordination with the network team (specifically Richard's team) is necessary to establish subnets for the projects.
+Action Items:
+
+Request subnet creation from Richard for the relevant projects and ensure all details are provided to enable shared subnets.
+Mark sections in documentation to indicate the need to consult Richard for specific information.
+Deployment Process:
+Initial Setup:
+
+During the deployment of Composer, certain Python package configurations (lines 20-22) should be commented out to allow for successful initial deployment.
+After deployment, move the required Python PIP file to a designated Google Cloud Storage (GCS) bucket, maintaining the folder structure (specifically under a "config/PIP" directory).
+Post-Deployment:
+
+After placing the PIP file in the GCS bucket, uncomment the previously commented lines in the deployment configuration.
+Rerun the deployment plan to incorporate the Python packages. Note that the Composer environment cannot access external repositories, so all packages must be sourced from the Wells Fargo artifactory.
+Final Considerations:
+
+Determine which team is responsible for moving the Python package and ensure that those involved in the Composer deployment are clear on their roles.
+If additional Python packages are necessary (e.g., Avro), ensure they are included during the second deployment attempt.
+Conclusion
+The module covers critical aspects of setting up a DLP scan and deploying Composer, emphasizing collaboration with the network team and the importance of following a two-step deployment process to ensure all configurations and packages are properly handled.
+
+
+
+Module Name: Composer Deployment and Configuration
+Summary:
+
+The discussion revolves around the deployment of Google Composer using Terraform, focusing on managing the pip configuration file and bucket creation process.
+
+Package Management with Composer:
+
+The team discusses how Composer requires a pip file to locate necessary packages. It’s confirmed that a script exists to automate copying the pip file upon deployment.
+Terraform Integration:
+
+Deja mentions enhancements made by the team to enable automatic handling of the pip file through Terraform. This involves the creation of a bucket where the pip file will reside.
+Bucket Creation:
+
+The process involves allowing Composer to create its own storage bucket, which is a default behavior in recent versions. The automatic bucket creation is emphasized, avoiding manual setup.
+Code Structure and Workflow:
+
+The conversation covers the structure of the Terraform code (main.tf) where resource blocks should be added. The pip configuration file must be uploaded after the bucket is created, necessitating a sequential execution of Terraform scripts.
+Execution Sequence:
+
+It's crucial to comment out resource blocks related to the pip file until after the Composer instance is successfully created. Once the bucket name is available, these resources can be uncommented for deployment.
+IAM and Role Bindings:
+
+The need for proper IAM service account setup is highlighted, indicating that role bindings and other permissions must be configured before resource creation. This ensures that all dependencies are satisfied for the modules to function properly.
+
+
+
+
+
+Module Name: AD Group and KMS Configuration
+Summary:
+
+In the conversation, team members discuss the process for creating an Active Directory (AD) group and configuring Key Management Service (KMS) for a project. Key points include:
+
+Entitlement Request and AD Group Creation:
+
+A request needs to be raised to create a new AD group since the required role does not currently exist. Team members clarify that the request should include the group name and email ID, and it should follow specific naming conventions.
+Key Naming for KMS:
+
+The conversation focuses on configuring KMS within the project's Terraform files. Team members go through specific lines in the main.tf file, noting that key names must be unique within a project and adhere to a four to seven-character alphanumeric requirement.
+Project-Specific Considerations:
+
+Each project should ideally have its own KMS key and key ring, and naming conventions should be consistent across projects, although names can repeat in different projects.
+BigQuery Dependency:
+
+Discussion includes a dependency between KMS and BigQuery; initially, KMS must be created before BigQuery can utilize it. Team members are advised to comment out certain lines in their code during the first run to ensure KMS is set up correctly before BigQuery attempts to access it.
+Service Account Management:
+
+The conversation touches on how to locate the service account's path for Terraform deployments and emphasizes that this information is generally restricted to specific teams. Team members are encouraged to collaborate and reach out if they need help accessing this information.
+Project Checklist and Runbook:
+
+The participants agree on the need for a checklist or runbook to document the steps required for deployment, highlighting the importance of following a specific sequence for successful configuration and integration.
+Overall, the discussion emphasizes the collaborative effort needed to set up the AD group and KMS, ensuring that all members are aligned on the procedures and requirements.
